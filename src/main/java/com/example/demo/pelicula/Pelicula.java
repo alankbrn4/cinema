@@ -22,7 +22,7 @@ public class Pelicula {
         generator = "pelicula_sequence" // Nombre del generador
     )
     
-    private int id;  // id de la pelicula
+    private Long id;  // id de la pelicula
     private String nombre;  // nombre de la pelicula
     private int duracion;  // duracion de la pelicula
     private String genero;  // genero de la pelicula
