@@ -1,7 +1,5 @@
 package com.example.demo.usuarios;
 
-import java.time.LocalDate;
-import java.time.Month;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
@@ -30,6 +28,7 @@ public class UsuarioRepositoryTest {
         usuario.setEmail(email);
         usuario.setGenero(1);
         usuario.setAdmin(false);
+
         usuarioRepository.save(usuario);
 
         //When
