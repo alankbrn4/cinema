@@ -4,14 +4,13 @@ package com.example.demo.usuarios;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import java.util.List;
 
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import org.mockito.ArgumentCaptor;
 
 @SpringBootTest
 public class UsuarioServiceTest {
@@ -35,7 +34,10 @@ public class UsuarioServiceTest {
         usuario.setEmail("alan@gmail.com");     
         usuario.setGenero(1);
         usuario.setAdmin(false);
-        usuarioRepository.save(usuario);
+
+        
+        undertest.addNewUsuario(usuario);
+        Mockito.when(usuarioRepository.findAll()).thenReturn(List.of(usuario));
 
         // Cuando se ejecute el método getUsuarios
         List<Usuario> expectedOutput = undertest.getUsuarios();
@@ -54,7 +56,7 @@ public class UsuarioServiceTest {
         usuario.setEmail("amedina@gmail.com");
         usuario.setGenero(0);
         usuario.setAdmin(false);    
-        usuarioRepository.save(usuario); //Aqui tengo la duda de si se usa esta instrucción tambien
+        
 
         //Cuando se ejecute el método addUsuario
         undertest.addNewUsuario(usuario);

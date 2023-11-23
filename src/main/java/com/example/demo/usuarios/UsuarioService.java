@@ -2,9 +2,6 @@ package com.example.demo.usuarios;
 
 //Componentes de Spring
 import org.springframework.stereotype.Component;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.demo.exception.ApiRequestException;
 
