@@ -1,5 +1,7 @@
 package com.example.demo.resenas;
 
+import com.example.demo.usuarios.Usuario;
+
 import jakarta.persistence.*;
 
 import lombok.Data;
@@ -23,4 +25,8 @@ public class Resena {
     private Long id;
     private float calificacion;
     private String reseña;
+
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
 }
