@@ -39,7 +39,7 @@ import lombok.Builder;
         private String firstName;
         private String lastName;
         private String email;
-        private String pass;
+        private String password;
 
         @Enumerated(EnumType.STRING)
         // Atributos del usario
@@ -49,13 +49,13 @@ import lombok.Builder;
             // Constructor vacio
                     }
                 
-        public User(long id, String firstName, String lastName, String email, String pass, Role role) {
+        public User(long id, String firstName, String lastName, String email, String password, Role role) {
             // Constructor con parámetros
             this.id = id;
             this.firstName = firstName;
             this.lastName = lastName;
             this.email = email;
-            this.pass = pass;
+            this.password = password;
             this.role = role;
         }
 
@@ -91,16 +91,16 @@ import lombok.Builder;
             this.email = email;
         }
     
-        public String getPass() {
-            return pass;
+        public String getPassword() {
+            return password;
         }
     
-        public void setPass(String pass) {
-            this.pass = pass;
+        public void setPassword(String password) {
+            this.password = password;
         }
 
         @Override
-        public Collection<? extends GrantedAuthority> grantedAuthorities() {
+        public Collection<? extends GrantedAuthority> getAuthorities() {
             return List.of(new SimpleGrantedAuthority(role.name()));
         }
 
@@ -109,8 +109,23 @@ import lombok.Builder;
             return email;
         }
     
-        @Override
-        public boolean isEnable() {
-            return true;
-        }
+        @Override //Arroja el estado de la cuenta
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override //Arroja el estado de la cuenta   
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override //Arroja el estado de la cuenta
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override //Arroja el estado de la cuenta
+    public boolean isEnabled() {
+        return true;
+    }
 }
