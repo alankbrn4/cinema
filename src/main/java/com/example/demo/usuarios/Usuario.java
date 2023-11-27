@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class Usuario {
     @Id // Establece el ID como llave primaria
-    @Column(name = "id") // Establece el nombre de la columna
+    @Column(name = "id_usuario") // Establece el nombre de la columna
     @SequenceGenerator( // Genera un valor secuencial
         name = "usuarios_sequence", // Nombre del generador
         sequenceName = "usuarios_sequence", // Nombre de la secuencia

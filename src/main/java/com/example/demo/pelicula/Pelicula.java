@@ -1,6 +1,9 @@
 package com.example.demo.pelicula;
 
 import java.sql.Date;
+
+import com.example.demo.resenas.Resena;
+
 import jakarta.persistence.*;
 
 
@@ -10,7 +13,7 @@ import lombok.Data;
 @Data
 public class Pelicula {
     @Id // Establece el ID como llave primaria
-    @Column(name = "id") // Establece el nombre de la columna
+    @Column(name = "id_pelicula") // Establece el nombre de la columna
     @SequenceGenerator( // Genera un valor secuencial
         name = "pelicula_sequence", // Nombre del generador
         sequenceName = "pelicula_sequence", // Nombre de la secuencia
@@ -29,4 +32,7 @@ public class Pelicula {
     private String director;  // director de la pelicula
     private Date fechaEstreno;  // fecha de estreno de la pelicula
     
+    @OneToMany
+    @JoinColumn(name = "id_resena")
+    private Resena resena;
 }
