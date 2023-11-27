@@ -111,6 +111,6 @@ import lombok.Builder;
     
         @Override
         public boolean isEnable() {
-            return true;
+            return enabled;
         }
 }
