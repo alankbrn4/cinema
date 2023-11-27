@@ -6,11 +6,11 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.security.UserRepository;
+import com.example.demo.usuarios.UsuarioRepository;
 import com.example.demo.security.Role;
 import java.util.regex.Pattern;
 import com.example.demo.security.config.JwtService;
-import com.example.demo.security.User;
+import com.example.demo.usuarios.Usuario;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthService {
     @Autowired
-    private UserRepository userRepository;
+    private UsuarioRepository userRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -37,10 +37,11 @@ public class AuthService {
     //Este método registra a un nuevo usuario en la base de datos.
     public AuthenticationResponse register(RegistrationRequest request) {
                
-        var user = User.builder()
-        .firstName(request.getFirstName())
-        .lastName(request.getLastName())
+        var user = Usuario.builder()
+        .nombre(request.getNombre())
+        .edad(request.getEdad())
         .email(request.getEmail())
+        .genero(request.getGenero())
         .password(passwordEncoder.encode(request.getPassword()))
         .role(Role.USER)
         .build();
