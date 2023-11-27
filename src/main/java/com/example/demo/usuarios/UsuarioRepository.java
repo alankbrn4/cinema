@@ -8,7 +8,8 @@ import java.util.Optional;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-    Optional <Usuario> findUsuarioById(Long id);        //return null;  
-    @Query(""+ "SELECT CASE WHEN COUNT(s) > 0 THEN TRUE ELSE FALSE END FROM Student s WHERE s.email = ?1")
+    Optional <Usuario> findUsuarioById(Long id); 
+    //return null;  
+    @Query("SELECT CASE WHEN COUNT(u) > 0 THEN TRUE ELSE FALSE END FROM Usuario u WHERE u.email = ?1")
     boolean findUsuarioByEmail(String email);
 }

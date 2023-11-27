@@ -29,6 +29,9 @@ public class Resena {
     @ManyToOne
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
+<<<<<<< HEAD
 
+=======
+>>>>>>> e3fd7648bbe5744615b64a20bb809a37f0a645fc
     
 }
