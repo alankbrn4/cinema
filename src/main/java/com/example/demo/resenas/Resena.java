@@ -26,7 +26,7 @@ public class Resena {
     private float calificacion;
     private String reseña;
 
-    @ManyToOne
+    @ManyToOne~
     @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 }
