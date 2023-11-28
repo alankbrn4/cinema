@@ -5,8 +5,11 @@ import com.example.demo.cartelera.Cartelera;
 
 import jakarta.persistence.*;
 
+
 import lombok.Data;
 import java.util.Date;
+
+import org.hibernate.annotations.Fetch;
 
 @Entity
 @Table(name = "Funcion")

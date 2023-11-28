@@ -12,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.example.demo.security.UserRepository;
+import com.example.demo.usuarios.UsuarioRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -20,11 +20,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ApplicationConfig {
     @Autowired
-    private UserRepository userRepository;
+    private UsuarioRepository userRepository;
     
     @Bean 
     public UserDetailsService userDetailsService() {
-        return username -> userRepository.findByEmail(username)
+        return username -> userRepository.findUsuarioByEmail(username)
             .orElseThrow(() -> new RuntimeException("User not found"));
     }
 

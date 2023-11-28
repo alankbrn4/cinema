@@ -32,7 +32,7 @@ public class UsuarioRepositoryTest {
         usuarioRepository.save(usuario);
 
         //When
-        boolean expected = usuarioRepository.findUsuarioByEmail(email);
+        boolean expected = usuarioRepository.existUsuarioByEmail(email);
 
         //Then
         assertTrue(expected);
