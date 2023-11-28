@@ -1,5 +1,8 @@
 package com.example.demo.funcion;
 
+import com.example.demo.sala.Sala;
+import com.example.demo.cartelera.Cartelera;
+
 import jakarta.persistence.*;
 
 import lombok.Data;
@@ -10,7 +13,7 @@ import java.util.Date;
 @Data
 public class Funcion {
     @Id // Establece el ID como llave primaria
-    @Column(name = "id") // Establece el nombre de la columna
+    @Column(name = "id_funcion") // Establece el nombre de la columna
     @SequenceGenerator( // Genera un valor secuencial
         name = "funcion_sequence", // Nombre del generador
         sequenceName = "funcion_sequence", // Nombre de la secuencia
@@ -25,4 +28,12 @@ public class Funcion {
     private Long id;  // id de la funcion
     private Date horarioInicio;  // horario de inicio de la funcion
     private Date horarioFin;  // horario de fin de la funcion
+
+    @ManyToOne
+    @JoinColumn(name = "id_sala")
+    private Sala sala;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cartelera")
+    private Cartelera cartelera;
 }

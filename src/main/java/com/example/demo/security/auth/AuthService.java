@@ -2,17 +2,23 @@ package com.example.demo.security.auth;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.security.UserRepository;
-import com.example.demo.usuarios.Usuario;
 import com.example.demo.usuarios.UsuarioRepository;
 import com.example.demo.security.Role;
 import java.util.regex.Pattern;
+import com.example.demo.security.config.JwtService;
+import com.example.demo.usuarios.Usuario;
 
 import lombok.RequiredArgsConstructor;
 
+/**
+ * Esta clase es responsable de manejar la autenticación y registro de usuarios.
+ * Utiliza un objeto UserRepository para interactuar con la base de datos y un objeto PasswordEncoder para encriptar las contraseñas de los usuarios.
+ * También utiliza un objeto JwtService para generar tokens JWT y un objeto AuthenticationManager para autenticar a los usuarios.
+ */
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -30,19 +36,26 @@ public class AuthService {
 
     //Este método registra a un nuevo usuario en la base de datos.
     public AuthenticationResponse register(RegistrationRequest request) {
-        Usuario user = new Usuario();
-        
-        user = Usuario.builder()
+               
+        var user = Usuario.builder()
         .nombre(request.getNombre())
         .edad(request.getEdad())
         .email(request.getEmail())
         .genero(request.getGenero())
-        .admin(false)
         .password(passwordEncoder.encode(request.getPassword()))
-        .role(AssignRole(request.getEmail()))
+        .role(Role.USER)
         .build();
 
         userRepository.save(user);
+        var jwtToken = JwtService.generateToken(user);
+        return AuthenticationResponse.builder().token(jwtToken).build();
+    }
+
+    public AuthenticationResponse authenticate(AuthenticationRequest request) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        var user = userRepository.findByEmail(request.getEmail())
+        .orElseThrow();
+
         var jwtToken = JwtService.generateToken(user);
         return AuthenticationResponse.builder().token(jwtToken).build();
     }

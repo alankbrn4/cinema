@@ -11,7 +11,7 @@ import lombok.Data;
 @Data
 public class Resena {
     @Id // Establece el ID como llave primaria
-    @Column(name = "id") // Establece el nombre de la columna
+    @Column(name = "id_resena") // Establece el nombre de la columna
     @SequenceGenerator( // Genera un valor secuencial
         name = "reseñas_sequence", // Nombre del generador
         sequenceName = "reseñas_sequence", // Nombre de la secuencia

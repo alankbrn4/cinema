@@ -2,9 +2,7 @@ package com.example.demo.usuarios;
 
 //Componentes de Spring
 import org.springframework.stereotype.Component;
-
 import com.example.demo.exception.ApiRequestException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
