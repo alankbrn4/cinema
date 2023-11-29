@@ -32,7 +32,7 @@ public class Pelicula {
     private String director;  // director de la pelicula
     private Date fechaEstreno;  // fecha de estreno de la pelicula
     
-    @OneToMany
+    @OneToOne
     @JoinColumn(name = "id_resena")
-    private Resena resena;
+    private Resena reseña;
 }

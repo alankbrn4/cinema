@@ -2,7 +2,9 @@ package com.example.demo.usuarios;
 
 //Componentes de Spring
 import org.springframework.stereotype.Component;
+
 import com.example.demo.exception.ApiRequestException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -26,7 +28,8 @@ public class UsuarioService {
     //POST  
     public void addNewUsuario(Usuario usuario){
 
-        Boolean usuarioByEmail = usuarioRepository.findUsuarioByEmail(usuario.getEmail()); //Bussiness Logic
+        
+        Boolean usuarioByEmail = usuarioRepository.existUsuarioByEmail(usuario.getEmail()); //Bussiness Logic
 
         if (validateEmail(usuario.getEmail()) == false) {
             throw new ApiRequestException("correo invalido");
