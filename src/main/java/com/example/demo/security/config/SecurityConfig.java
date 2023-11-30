@@ -27,7 +27,7 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf
                 .disable())
                 .authorizeHttpRequests()
-                .requestMatchers("api/auth/register", "api/auth/authenticate") //se entrega la ruta entera acia los endpoints en vez de solo dar la ruta del controlador sola
+                .requestMatchers("localhost:8080/api/auth/register", "localhost:8080/api/auth/authenticate") //se entrega la ruta entera acia los endpoints en vez de solo dar la ruta del controlador sola
                 .permitAll()
                 .anyRequest()
                 .authenticated();
